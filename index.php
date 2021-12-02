@@ -91,7 +91,8 @@
 		else if($_GET['hal'] == "hapus")
 		{
 				//persiapan hapus data
-				$hapus = mysqli_query($koneksi, "DELETE FROM smkti WHERE id_siswa = '$_GET[id]' ");
+				$hapus = mysqli_query($koneksi, "DELETE FROM smkti WHERE id_siswa = 
+					'$_GET[id]' ");
 			if($hapus){
 				echo "<script>
 						alert('Hapus Data SUKSES!!');
@@ -192,8 +193,9 @@
   			<td>
   				<a href="index.php?hal=edit&id=<?=$data['id_siswa']?>" 
   				class="btn btn-warning">Edit </a>
-  				<a href="index.php?hal=hapus&id=<?$data['id_siswa']?>
-  				"onclick="return confirm('Anda yakin ingin Hapus Data Ini?')" class="btn btn-danger">Hapus </a>
+  				<a href="index.php?hal=hapus&id=<?=$data['id_siswa']?>
+  				"onclick="return confirm('Anda yakin ingin Hapus Data Ini?')" 
+  				class="btn btn-danger">Hapus </a>
   			</td>
   		</tr>
   		<?php endwhile; //pemutus perulangan ?>
