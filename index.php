@@ -109,39 +109,45 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>RPL</title>
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
 <body>
 
-<div class="container">
+<div class="container mt-3">
 
-<h1 class="text-center">Data Siswa SMKTI</h1>
+	<h1 class="text-center" data-aos="zoom-out" data-aos-duration="800">
+			<i class="bi bi-file-person"></i> 
+			Data Siswa SMKTI
+	</h1>
 
 <!-- Awal Card Data RPL -->
-<div class="card mt-4">
+<div class="card mt-5">
   <div class="card-header bg-warning">
-    Input Data
+  	<i class="bi bi-person-lines-fill"></i> 
+  	Input Data
   </div>
   <div class="card-body">
   	<form method="post" action="">
-  		<div class="form-group">
-  			<label>Nama</label>
-  			<input type="text" name="tnama" value="<?=@$vnama?>" class="form-control" placeholder="Input Nama Anda!!" required>
+  		<div class="form-group" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="700">
+  			<label><i class="bi bi-pencil-square"></i> Nama</label>
+  			<input type="text" name="tnama" value="<?=@$vnama?>" class="form-control" placeholder="Input Nama" required>
   		</div>
-  		<div class="form-group">
-  			<label>Email</label>
-  			<input type="email" name="temail" value="<?=@$vemail?>" class="form-control" placeholder="Input Email Anda!!" required>
+  		<div class="form-group" data-aos="zoom-out" data-aos-delay="150" data-aos-duration="700">
+  			<label><i class="bi bi-pencil-square"></i> Email</label>
+  			<input type="email" name="temail" value="<?=@$vemail?>" class="form-control" placeholder="Input Email" required>
   		</div>
-  		<div class="form-group">
-  			<label>Alamat</label>
-  			<textarea class="form-control" name="talamat" placeholder="Input Alamat Anda!!"><?=@$valamat?></textarea>
+  		<div class="form-group" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="700">
+  			<label><i class="bi bi-pencil-square"></i> Alamat</label>
+  			<textarea class="form-control" name="talamat" placeholder="Input Alamat" data-aos-duration="700"><?=@$valamat?></textarea>
   		</div>
-  		<div class="form-group">
-  			<label>Telp</label>
-  			<input type="text" name="ttelp" value="<?=@$vtelp?>" class="form-control" placeholder="Input No.telp Anda!!" required>
+  		<div class="form-group" data-aos="zoom-out" data-aos-delay="250" data-aos-duration="700">
+  			<label><i class="bi bi-pencil-square"></i> Telp</label>
+  			<input type="text" name="ttelp" value="<?=@$vtelp?>" class="form-control" placeholder="Input Telp" required>
   		</div>
-  		<div class="form-group">
-  			<label>Jurusan</label>
+  		<div class="form-group" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="700">
+  			<label><i class="bi bi-pencil-square"></i> Jurusan</label>
   			<select class="form-control" name="tjurusan">
   				<option value="<?=@$vjurusan?>"><?=@$vjurusan?></option>
   				<option value="RPL">RPL</option>
@@ -161,8 +167,9 @@
 <!-- Akhir Card Data RPL -->
 
 <!-- Awal Card Tabel RPL -->
-<div class="card mt-4">
+<div class="card mt-5">
   <div class="card-header bg-warning">
+  	<i class="bi bi-person-video2"></i>
     Daftar Siswa
   </div>
   <div class="card-body">
@@ -207,5 +214,9 @@
 
 </div>
 <script type="js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 </body>
 </html>
