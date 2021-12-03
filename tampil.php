@@ -1,13 +1,17 @@
-<?php 
-	//koneksi database
-	$server = "localhost";
-	$user = "root";
-	$password = "zxayn123";
-	$database = "db_smkti";
+<?php
+    //buat session
+    if(!isset($_SESSION)) {
+        session_start();
+    }
 
-	$koneksi = mysqli_connect($server, $user, $password, $database)or die
-	(mysqli_error($koneksi));
+    //biar dipaksa login dahulu
+    if(!isset($_SESSION['username'])) {
+    	header("location: index.php");
+    }
 
+
+
+    require_once("koneksi.php");
 	//jika tombol simpan di klik
 	if (isset($_POST['bsimpan']))
 	{
@@ -17,13 +21,13 @@
 		if($_GET['hal'] == "edit")
 		{
 			//data akan di edit
-			$edit = mysqli_query($koneksi, "UPDATE smkti set 
-												nama = '$_POST[tnama]',
+			$edit = mysqli_query($conn, "UPDATE tb_admin set 
+												username = '$_POST[tusername]',
 												email = '$_POST[temail]',
+												password = md5('$_POST[tpassword]'),
 												alamat = '$_POST[talamat]',
-												telp = '$_POST[ttelp]',
 												jurusan = '$_POST[tjurusan]'
-											WHERE id_siswa = '$_GET[id]'
+											WHERE id_users = '$_GET[id]'
 										   ");
 			if ($edit) //jika simpan sukses
 			{
@@ -40,15 +44,15 @@
 					  </script>";
 			}
 		}
-	}
+	}		
 		else
 		{
 			//data akan di simpan baru
-			$simpan = mysqli_query($koneksi, "INSERT INTO smkti (nama, email, alamat, telp, jurusan)
-							VALUES ('$_POST[tnama]', 
+			$simpan = mysqli_query($conn, "INSERT INTO tb_admin (username, email, password, alamat, jurusan)
+							VALUES ('$_POST[tusername]', 
 									'$_POST[temail]', 
+									md5('$_POST[tpassword]'), 
 									'$_POST[talamat]', 
-									'$_POST[ttelp]', 
 									'$_POST[tjurusan]')
 								");
 			if ($simpan) //jika simpan sukses
@@ -75,15 +79,15 @@
 		if($_GET['hal'] == "edit")
 		{
 			//tampilkan data yang akan di edit
-			$tampil = mysqli_query($koneksi, "SELECT * FROM smkti WHERE id_siswa = '$_GET[id]' ");
+			$tampil = mysqli_query($conn, "SELECT * FROM tb_admin WHERE id_users = '$_GET[id]' ");
 			$data = mysqli_fetch_array($tampil);
 			if ($data) 
 			{
 				//jika data di temukan maka data di tampung dulu kedalam variable
-				$vnama = $data['Nama'];
+				$vusername = $data['Username'];
 				$vemail = $data['Email'];
+				$vpassword = $data['Password'];
 				$valamat = $data['Alamat'];
-				$vtelp = $data['Telp'];
 				$vjurusan = $data['Jurusan'];
 			}
 		}
@@ -93,7 +97,7 @@
 		if($_GET['hal'] == "hapus")
 		{
 				//persiapan hapus data
-				$hapus = mysqli_query($koneksi, "DELETE FROM smkti WHERE id_siswa = 
+				$hapus = mysqli_query($conn, "DELETE FROM tb_admin WHERE id_users = 
 					'$_GET[id]' ");
 			if($hapus){
 				echo "<script>
@@ -120,8 +124,13 @@
 
 	<h1 class="text-center" data-aos="zoom-out" data-aos-duration="800">
 			<i class="bi bi-file-person"></i> 
-			Data Siswa SMKTI
+			Data SMKTI
 	</h1>
+
+<h1>Users</h1>
+<p>
+    <a href="logout.php">Logout</a>
+</p>	
 
 <!-- Awal Card Data RPL -->
 <div class="card mt-5">
@@ -132,20 +141,20 @@
   <div class="card-body">
   	<form method="post" action="">
   		<div class="form-group" data-aos="zoom-in" data-aos-delay="100" data-aos-duration="700">
-  			<label><i class="bi bi-pencil-square"></i> Nama</label>
-  			<input type="text" name="tnama" value="<?=@$vnama?>" class="form-control" placeholder="Input Nama" required>
+  			<label><i class="bi bi-pencil-square"></i> Username</label>
+  			<input type="text" name="tusername" value="<?=@$vusername?>" class="form-control" placeholder="Input Username" required>
   		</div>
   		<div class="form-group" data-aos="zoom-out" data-aos-delay="150" data-aos-duration="700">
   			<label><i class="bi bi-pencil-square"></i> Email</label>
   			<input type="email" name="temail" value="<?=@$vemail?>" class="form-control" placeholder="Input Email" required>
   		</div>
+  		<div class="form-group" data-aos="zoom-out" data-aos-delay="250" data-aos-duration="700">
+  			<label><i class="bi bi-pencil-square"></i> Password</label>
+  			<input type="password" name="tpassword" value="<?=@$vpassword?>" class="form-control" placeholder="Input Password" required>
+  		</div>
   		<div class="form-group" data-aos="zoom-in" data-aos-delay="200" data-aos-duration="700">
   			<label><i class="bi bi-pencil-square"></i> Alamat</label>
   			<textarea class="form-control" name="talamat" placeholder="Input Alamat" data-aos-duration="700"><?=@$valamat?></textarea>
-  		</div>
-  		<div class="form-group" data-aos="zoom-out" data-aos-delay="250" data-aos-duration="700">
-  			<label><i class="bi bi-pencil-square"></i> Telp</label>
-  			<input type="text" name="ttelp" value="<?=@$vtelp?>" class="form-control" placeholder="Input Telp" required>
   		</div>
   		<div class="form-group" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="700">
   			<label><i class="bi bi-pencil-square"></i> Jurusan</label>
@@ -171,37 +180,37 @@
 <div class="card mt-5">
   <div class="card-header bg-warning">
   	<i class="bi bi-person-video2"></i>
-    Daftar Siswa
+   	Data SMKTI
   </div>
   <div class="card-body">
   	
   	<table class="table table-bordered table-striped">
   		<tr>
   			<th>No.</th>
-  			<th>Nama</th>
+  			<th>Username</th>
   			<th>Email</th>
+  			<th>Password</th>
   			<th>Alamat</th>
-  			<th>Telp</th>
   			<th>Jurusan</th>
   			<th>Aksi</th>
   		</tr>
   		<?php
   		$no = 1;
-  		$tampil = mysqli_query($koneksi, "SELECT * FROM smkti order by id_siswa desc");
+  		$tampil = mysqli_query($conn, "SELECT * FROM tb_admin order by id_users desc");
   		while ($data = mysqli_fetch_array($tampil)) :
 
   		?>
   		<tr>
   			<td><?=$no++?></td>
-  			<td><?=$data['Nama']?></td>
+  			<td><?=$data['Username']?></td>
   			<td><?=$data['Email']?></td>
+  			<td><?=$data['Password']?></td>
   			<td><?=$data['Alamat']?></td>
-  			<td><?=$data['Telp']?></td>
   			<td><?=$data['Jurusan']?></td>
   			<td>
-  				<a href="tampil.php?hal=edit&id=<?=$data['id_siswa']?>" 
+  				<a href="tampil.php?hal=edit&id=<?=$data['id_users']?>" 
   				class="btn btn-warning">Edit </a>
-  				<a href="tampil.php?hal=hapus&id=<?=$data['id_siswa']?>
+  				<a href="tampil.php?hal=hapus&id=<?=$data['id_users']?>
   				"onclick="return confirm('Anda yakin ingin Hapus Data Ini?')" 
   				class="btn btn-danger">Hapus </a>
   			</td>

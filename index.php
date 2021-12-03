@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1 align="center">Halaman Login</h1>
-<form method="post" action="tampil.php">
+<form method="post" action="aksi.php">
      
     <table align="center">
         <tr>
