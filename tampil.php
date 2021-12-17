@@ -1,4 +1,4 @@
-<?php
+	<?php
     //buat session
     if(!isset($_SESSION)) {
         session_start();
@@ -135,19 +135,19 @@
   	<form method="post" action="">
   		<div class="form-group fw-bold" data-aos="zoom-in" data-aos-delay="200">
   			<label><i class="bi bi-pencil-square"></i> Username</label>
-  			<input type="text" name="tusername" value="<?=@$vusername?>" class="form-control" placeholder="Input Username" required>
+  			<input type="text" name="tusername" value="<?=@$vusername?>" class="form-control" required>
   		</div>
   		<div class="form-group mt-3 fw-bold" data-aos="zoom-out" data-aos-delay="300">
   			<label><i class="bi bi-pencil-square"></i> Email</label>
-  			<input type="email" name="temail" value="<?=@$vemail?>" class="form-control" placeholder="Input Email" required>
+  			<input type="email" name="temail" value="<?=@$vemail?>" class="form-control" required>
   		</div>
   		<div class="form-group mt-3 fw-bold" data-aos="zoom-out" data-aos-delay="400">
   			<label><i class="bi bi-pencil-square"></i> Password</label>
-  			<input type="password" name="tpassword" value="<?=@$vpassword?>" class="form-control" placeholder="Input Password" required>
+  			<input type="password" name="tpassword" value="<?=@$vpassword?>" class="form-control" required>
   		</div>
   		<div class="form-group mt-3 fw-bold" data-aos="zoom-in" data-aos-delay="500">
   			<label><i class="bi bi-pencil-square"></i> Alamat</label>
-  			<textarea class="form-control" name="talamat" placeholder="Input Alamat" data-aos-duration="700"><?=@$valamat?></textarea>
+  			<textarea class="form-control" name="talamat" data-aos-duration="700"><?=@$valamat?></textarea>
   		</div>
   		<div class="form-group mt-3 fw-bold" data-aos="zoom-in" data-aos-delay="600">
   			<label><i class="bi bi-pencil-square"></i> Jurusan</label>
