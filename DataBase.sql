@@ -51,7 +51,7 @@ INSERT INTO `tb_admin` (`id_users`, `Username`, `Email`, `Password`, `Alamat`, `
 -- Indeks untuk tabel `tb_admin`
 --
 ALTER TABLE `tb_admin`
-  ADD PRIMARY KEY (`id_users`);
+ADD PRIMARY KEY (`id_users`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -61,8 +61,7 @@ ALTER TABLE `tb_admin`
 -- AUTO_INCREMENT untuk tabel `tb_admin`
 --
 ALTER TABLE `tb_admin`
-  MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
+MODIFY `id_users` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

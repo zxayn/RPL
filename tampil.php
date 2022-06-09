@@ -6,7 +6,7 @@
 
     //biar dipaksa login dahulu
     if(!isset($_SESSION['username'])) {
-    	header("location: index.php");
+		header("location: index.php");
     }
 
 
@@ -22,26 +22,26 @@
 		{
 			//data akan di edit
 			$edit = mysqli_query($conn, "UPDATE tb_admin set 
-												username = '$_POST[tusername]',
-												email = '$_POST[temail]',
-												password = md5('$_POST[tpassword]'),
-												alamat = '$_POST[talamat]',
-												jurusan = '$_POST[tjurusan]'
-											WHERE id_users = '$_GET[id]'
-										   ");
+									username = '$_POST[tusername]',
+									email = '$_POST[temail]',
+									password = md5('$_POST[tpassword]'),
+									alamat = '$_POST[talamat]',
+									jurusan = '$_POST[tjurusan]'
+									WHERE id_users = '$_GET[id]'
+								");
 			if ($edit) //jika simpan sukses
 			{
 				echo "<script>
 					alert('Edit Data SUKSES!');
 					document.location='tampil.php'
-					  </script>";
+				</script>";
 			}
 			else
 			{
 				echo "<script>
 					alert('Edit Data GAGAL!');
 					document.location='tampil.php'
-					  </script>";
+				</script>";
 			}
 		}
 	}		
@@ -60,14 +60,14 @@
 				echo "<script>
 					alert('Simpan Data SUKSES!');
 					document.location='tampil.php'
-					  </script>";
+					</script>";
 			}
 			else
 			{
 				echo "<script>
 					alert('Simpan Data GAGAL!');
 					document.location='tampil.php'
-					  </script>";
+					</script>";
 			}
 		}
 	}
@@ -103,7 +103,7 @@
 				echo "<script>
 						alert('Hapus Data SUKSES!!');
 						document.location='tampil.php'
-					  </script>";
+					</script>";
 			}		
 		}
 	}
@@ -124,46 +124,46 @@
 
 <!-- Awal Card Data RPL -->
 <div class="card mt-5 fw-bold">
-  <div class="card-header bg-warning">
-  	<i class="bi bi-person-lines-fill"></i> 
-  	Masukan Data Anda
-  	<p>
-    	<a href="logout.php">Logout</a>
-		</p>
-  </div>
-  <div class="card-body">
-  	<form method="post" action="">
-  		<div class="form-group fw-bold" data-aos="zoom-in" data-aos-delay="200">
-  			<label><i class="bi bi-pencil-square"></i> Username</label>
-  			<input type="text" name="tusername" value="<?=@$vusername?>" class="form-control" required>
-  		</div>
-  		<div class="form-group mt-3 fw-bold" data-aos="zoom-out" data-aos-delay="300">
-  			<label><i class="bi bi-pencil-square"></i> Email</label>
-  			<input type="email" name="temail" value="<?=@$vemail?>" class="form-control" required>
-  		</div>
-  		<div class="form-group mt-3 fw-bold" data-aos="zoom-out" data-aos-delay="400">
-  			<label><i class="bi bi-pencil-square"></i> Password</label>
-  			<input type="password" name="tpassword" value="<?=@$vpassword?>" class="form-control" required>
-  		</div>
-  		<div class="form-group mt-3 fw-bold" data-aos="zoom-in" data-aos-delay="500">
-  			<label><i class="bi bi-pencil-square"></i> Alamat</label>
-  			<textarea class="form-control" name="talamat" data-aos-duration="700"><?=@$valamat?></textarea>
-  		</div>
-  		<div class="form-group mt-3 fw-bold" data-aos="zoom-in" data-aos-delay="600">
-  			<label><i class="bi bi-pencil-square"></i> Jurusan</label>
-  			<select class="form-control" name="tjurusan">
-  				<option value="<?=@$vjurusan?>"><?=@$vjurusan?></option>
-  				<option value="RPL">RPL</option>
-  				<option value="MM">MM</option>
-  				<option value="TKJ">TKJ</option>
-  			</select>
-  		</div>
- 			<div class="mt-3">
-	  		<button type="submit" class="btn btn-warning" name="bsimpan">Simpan
-	  		</button>
-	  		<button type="reset" class="btn btn-danger" name="breset">Batal
-	  		</button>
-			</div>
+	<div class="card-header bg-warning">
+		<i class="bi bi-person-lines-fill"></i> 
+			Masukan Data Anda
+	<p>
+		<a href="logout.php">Logout</a>
+	</p>
+</div>
+	<div class="card-body">
+		<form method="post" action="">
+			<div class="form-group fw-bold" data-aos="zoom-in" data-aos-delay="200">
+				<label><i class="bi bi-pencil-square"></i> Username</label>
+			<input type="text" name="tusername" value="<?=@$vusername?>" class="form-control" required>
+	</div>
+		<div class="form-group mt-3 fw-bold" data-aos="zoom-out" data-aos-delay="300">
+			<label><i class="bi bi-pencil-square"></i> Email</label>
+			<input type="email" name="temail" value="<?=@$vemail?>" class="form-control" required>
+	</div>
+		<div class="form-group mt-3 fw-bold" data-aos="zoom-out" data-aos-delay="400">
+			<label><i class="bi bi-pencil-square"></i> Password</label>
+				<input type="password" name="tpassword" value="<?=@$vpassword?>" class="form-control" required>
+	</div>
+		<div class="form-group mt-3 fw-bold" data-aos="zoom-in" data-aos-delay="500">
+			<label><i class="bi bi-pencil-square"></i> Alamat</label>
+			<textarea class="form-control" name="talamat" data-aos-duration="700"><?=@$valamat?></textarea>
+	</div>
+		<div class="form-group mt-3 fw-bold" data-aos="zoom-in" data-aos-delay="600">
+			<label><i class="bi bi-pencil-square"></i> Jurusan</label>
+				<select class="form-control" name="tjurusan">
+				<option value="<?=@$vjurusan?>"><?=@$vjurusan?></option>
+				<option value="RPL">RPL</option>
+				<option value="MM">MM</option>
+				<option value="TKJ">TKJ</option>
+	</select>
+	</div>
+			<div class="mt-3">
+			<button type="submit" class="btn btn-warning" name="bsimpan">Simpan
+	</button>
+			<button type="reset" class="btn btn-danger" name="breset">Batal
+	</button>
+	</div>
   	</form>
   </div>
 </div>
@@ -171,47 +171,45 @@
 
 <!-- Awal Card Tabel RPL -->
 <div class="card mt-5 fw-bold">
-  <div class="card-header bg-warning">
-  	<i class="bi bi-person-video2"></i>
-   	Data Anda
-  </div>
-  <div class="card-body">
-  	
-  	<table class="table table-bordered table-striped">
-  		<tr>
-  			<th>No.</th>
-  			<th>Username</th>
-  			<th>Email</th>
-  			<th>Password</th>
-  			<th>Alamat</th>
-  			<th>Jurusan</th>
-  			<th>Aksi</th>
-  		</tr>
-  		<?php
-  		$no = 1;
+	<div class="card-header bg-warning">
+		<i class="bi bi-person-video2"></i>
+	Data Anda
+</div>
+	<div class="card-body">
+		<table class="table table-bordered table-striped">
+		<tr>
+			<th>No.</th>
+			<th>Username</th>
+			<th>Email</th>
+			<th>Password</th>
+			<th>Alamat</th>
+			<th>Jurusan</th>
+			<th>Aksi</th>
+		</tr>
+	<?php
+		$no = 1;
   		$tampil = mysqli_query($conn, "SELECT * FROM tb_admin order by id_users desc");
-  		while ($data = mysqli_fetch_array($tampil)) :
+			while ($data = mysqli_fetch_array($tampil)) :
 
-  		?>
-  		<tr>
-  			<td><?=$no++?></td>
-  			<td><?=$data['Username']?></td>
-  			<td><?=$data['Email']?></td>
-  			<td><?=$data['Password']?></td>
-  			<td><?=$data['Alamat']?></td>
-  			<td><?=$data['Jurusan']?></td>
-  			<td>
-  				<a href="tampil.php?hal=edit&id=<?=$data['id_users']?>" 
-  				class="btn btn-warning">Edit </a>
-  				<a href="tampil.php?hal=hapus&id=<?=$data['id_users']?>
-  				"onclick="return confirm('Anda yakin ingin Hapus Data Ini?')" 
-  				class="btn btn-danger">Hapus </a>
-  			</td>
-  		</tr>
-  		<?php endwhile; //pemutus perulangan ?>
-  	</table>
-
-  </div>
+	?>
+	<tr>
+		<td><?=$no++?></td>
+		<td><?=$data['Username']?></td>
+		<td><?=$data['Email']?></td>
+		<td><?=$data['Password']?></td>
+		<td><?=$data['Alamat']?></td>
+		<td><?=$data['Jurusan']?></td>
+			<td>
+		<a href="tampil.php?hal=edit&id=<?=$data['id_users']?>" 
+			class="btn btn-warning">Edit </a>
+			<a href="tampil.php?hal=hapus&id=<?=$data['id_users']?>
+			"onclick="return confirm('Anda yakin ingin Hapus Data Ini?')" 
+			class="btn btn-danger">Hapus </a>
+		</td>
+	</tr>
+		<?php endwhile; //pemutus perulangan ?>
+	</table>
+	</div>
 </div>
 <!-- Akhir Card Tabel RPL -->
 
@@ -219,7 +217,7 @@
 <script type="js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init();
+AOS.init();
 </script>
 </body>
 </html>
